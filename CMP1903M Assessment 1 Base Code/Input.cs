@@ -54,7 +54,7 @@ namespace CMP1903M_Assessment_1_Base_Code
             {
                 try
                 {
-                    text = System.IO.File.ReadAllText($@"/Text Files Go HERE/{fileName}");
+                    text = System.IO.File.ReadAllText($@"../Text Files Go HERE/{fileName}");
                     break;
                 }
                 catch

@@ -10,6 +10,12 @@ namespace CMP1903M_Assessment_1_Base_Code
     {
         //Handles the analysis of text
 
+        char[] lowerVowels = {'a','e','i','o','u'};
+        char[] upperVowels = {'A','E','I','O','U'};
+        char[] lowerConsonant = { 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
+        char[] upperConsonant = { 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'};
+
+        char sentences = '.';
         //Method: analyseText
         //Arguments: string
         //Returns: list of integers
