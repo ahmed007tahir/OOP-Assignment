@@ -14,8 +14,41 @@ namespace CMP1903M_Assessment_1_Base_Code
             //Local list of integers to hold the first five measurements of the text
             List<int> parameters = new List<int>();
 
+            string prompt = "Please press:\n\n (1) to enter text manually for analysis\n (2) to analyse text from file";
+            string errorMessage = "\n\nInvalid Input!" + prompt;
+            Input input = new Input();
+
+            Console.WriteLine(prompt);
+            
+            while (true) 
+            {
+                try
+                {
+                    string userChoice = Console.ReadLine();
+                    if (userChoice == "1")
+                    {
+                        input.manualTextInput();
+                    }
+                    else if (userChoice == "2")
+                    {
+                        Console.WriteLine("Please type the name of the text you wish to be analysed.");
+                        string fileName = Console.ReadLine();
+                        input.fileTextInput(fileName);
+                    }
+                    else
+                    {
+                        Console.WriteLine(errorMessage);
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine(errorMessage);
+                }
+            }
+
             //Create 'Input' object
             //Get either manually entered text, or text from a file
+            
 
 
             //Create an 'Analyse' object
