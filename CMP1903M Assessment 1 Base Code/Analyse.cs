@@ -14,8 +14,13 @@ namespace CMP1903M_Assessment_1_Base_Code
         char[] upperVowels = {'A','E','I','O','U'};
         char[] lowerConsonant = { 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
         char[] upperConsonant = { 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'};
-
         char sentences = '.';
+
+        int numOfSentences = 0;
+        int numOfVowels = 0;
+        int numOfConsonants = 0;
+        int numOfUpperCase = 0;
+        int numOfLowerCase = 0;
         //Method: analyseText
         //Arguments: string
         //Returns: list of integers
@@ -35,6 +40,39 @@ namespace CMP1903M_Assessment_1_Base_Code
                 values.Add(0);
             }
 
+            foreach (char character in input)
+            {
+                if (character == sentences)
+                {
+                    numOfSentences++;
+                }
+                else if (lowerVowels.Contains(character))
+                {
+                    numOfLowerCase++;
+                    numOfVowels++;
+                }
+                else if (upperVowels.Contains(character))
+                {
+                    numOfUpperCase++;
+                    numOfVowels++;
+                }
+                else if (lowerConsonant.Contains(character))
+                {
+                    numOfLowerCase++;
+                    numOfConsonants++;
+                }
+                else if (upperConsonant.Contains(character))
+                {
+                    numOfUpperCase++;
+                    numOfConsonants++;
+                }
+            }
+
+            Console.WriteLine(numOfSentences);
+            Console.WriteLine(numOfVowels);
+            Console.WriteLine(numOfConsonants);
+            Console.WriteLine(numOfUpperCase);
+            Console.WriteLine(numOfLowerCase);
 
             return values;
         }

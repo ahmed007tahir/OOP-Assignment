@@ -16,6 +16,8 @@ namespace CMP1903M_Assessment_1_Base_Code
 
             string prompt = "Please press:\n\n (1) to enter text manually for analysis\n (2) to analyse text from file";
             string errorMessage = "\n\nInvalid Input!" + prompt;
+            
+            string something = "something";
 
             Console.WriteLine(prompt);
             
@@ -32,7 +34,7 @@ namespace CMP1903M_Assessment_1_Base_Code
             {
                 Console.WriteLine("Please type the name of the text file you wish to be analysed.");
                 string fileName = Console.ReadLine();
-                get.fileTextInput(fileName);
+                something = get.fileTextInput(fileName);
             }
             else
             {
@@ -42,8 +44,9 @@ namespace CMP1903M_Assessment_1_Base_Code
 
             //Create an 'Analyse' object
             //Pass the text input to the 'analyseText' method
+            Console.WriteLine(something);
             Analyse run = new Analyse();
-            //run.analyseText("string text")
+            run.analyseText(something);
 
 
             //Receive a list of integers back
@@ -53,7 +56,7 @@ namespace CMP1903M_Assessment_1_Base_Code
 
 
             //TO ADD: Get the frequency of individual letters?
-
+            Console.Read();
            
         }
         
