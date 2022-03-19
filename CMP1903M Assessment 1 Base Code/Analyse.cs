@@ -10,10 +10,12 @@ namespace CMP1903M_Assessment_1_Base_Code
     {
         //Handles the analysis of text
 
+        // Initialize properties
         char[] lowerVowels = {'a','e','i','o','u'};
         char[] upperVowels = {'A','E','I','O','U'};
         char[] lowerConsonant = { 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
         char[] upperConsonant = { 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'};
+        char[] numerals = {'0','1','2','3','4','5','6','7','8','9'};
         char sentences = '.';
 
         int numOfSentences = 0;
@@ -21,6 +23,8 @@ namespace CMP1903M_Assessment_1_Base_Code
         int numOfConsonants = 0;
         int numOfUpperCase = 0;
         int numOfLowerCase = 0;
+        int numOfNumerals = 0;
+        
         //Method: analyseText
         //Arguments: string
         //Returns: list of integers
@@ -33,9 +37,12 @@ namespace CMP1903M_Assessment_1_Base_Code
             //3. Number of consonants
             //4. Number of upper case letters
             //5. Number of lower case letters
+            
             List<int> values = new List<int>();
+            
             //Initialise all the values in the list to '0'
-            for(int i = 0; i<5; i++)
+            
+            for(int i = 0; i<6; i++)
             {
                 values.Add(0);
             }
@@ -66,13 +73,21 @@ namespace CMP1903M_Assessment_1_Base_Code
                     numOfUpperCase++;
                     numOfConsonants++;
                 }
+                else if (numerals.Contains(character))
+                {
+                    numOfNumerals++;
+                }
             }
-
-            Console.WriteLine(numOfSentences);
-            Console.WriteLine(numOfVowels);
-            Console.WriteLine(numOfConsonants);
-            Console.WriteLine(numOfUpperCase);
-            Console.WriteLine(numOfLowerCase);
+            
+            values[0] = numOfSentences;
+            values[1] = numOfVowels;
+            values[2] = numOfConsonants;
+            values[3] = numOfUpperCase;
+            values[4] = numOfLowerCase;
+            values[5] = numOfNumerals;
+            
+            int totalCharacters = numOfConsonants+numOfVowels+numOfNumerals;
+            Console.WriteLine("Total number of Characters = " + totalCharacters);
 
             return values;
         }

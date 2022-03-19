@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,26 +19,20 @@ namespace CMP1903M_Assessment_1_Base_Code
         public string manualTextInput()
         {
 
-            string prompt = "Please type in the text you wish to be analysed.";
-            string errorMessage = "Invalid input!" + prompt;
+            string prompt = "\n\nPlease type in the text you wish to be analysed: ";
+            string errorMessage = "Invalid input!\n" + prompt;
 
-            Console.WriteLine(prompt);
+            Console.Write(prompt);
 
             while (true)
             {
-                try
+                text = Console.ReadLine();
+                if (text.Length != 0)
                 {
-                    text = Console.ReadLine();
-                    Console.WriteLine(errorMessage);
                     break;
-                    
                 }
-                catch
-                {
-                    Console.WriteLine(errorMessage);
-                }
+                Console.WriteLine(errorMessage);
             }
-
             return text;
         }
 
@@ -54,7 +49,7 @@ namespace CMP1903M_Assessment_1_Base_Code
             {
                 try
                 {
-                    text = System.IO.File.ReadAllText($@"../Text Files Go HERE/{fileName}");
+                    text = File.ReadAllText($@"../Text Files Go HERE/{fileName}");
                     break;
                 }
                 catch
