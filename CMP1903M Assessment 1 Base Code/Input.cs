@@ -10,55 +10,57 @@ namespace CMP1903M_Assessment_1_Base_Code
     public class Input
     {
         //Handles the text input for Assessment 1
-        string text = "nothing";
+        
+        //Initialising private variable to hold the Text
+        private string _text = "some text";
         
         //Method: manualTextInput
         //Arguments: none
         //Returns: string
         //Gets text input from the keyboard
-        public string manualTextInput()
+        public string ManualTextInput()
         {
 
-            string prompt = "\n\nPlease type in the text you wish to be analysed: ";
-            string errorMessage = "Invalid input!\n" + prompt;
-
-            Console.Write(prompt);
-
-            while (true)
+            Console.WriteLine("\n\nType in the Text. Please end with an asterisk(*).\n");
+            try
             {
-                text = Console.ReadLine();
-                if (text.Length != 0)
+                _text = Console.ReadLine();
+                while (_text[_text.Count()-1] != '*')
                 {
-                    break;
+                    Console.WriteLine("\nYou did not end your text with an asterisk(*). You can continue to type in more text.\nPlease end your text with an asterisk(*).");
+                    _text += " ";
+                    _text += Console.ReadLine();
                 }
-                Console.WriteLine(errorMessage);
             }
-            return text;
+            catch
+            {
+                Console.WriteLine("Invalid Input");
+                ManualTextInput();
+            }
+            return _text;
         }
 
         //Method: fileTextInput
         //Arguments: string (the file path)
         //Returns: string
         //Gets text input from a .txt file
-        public string fileTextInput(string fileName)
+        public string FileTextInput(string fileName)
         {
-
             string errorMessage = "Invalid input! Please type the name of the text you wish to be analysed.";
-
             while (true)
             {
                 try
                 {
-                    text = File.ReadAllText($@"../Text Files Go HERE/{fileName}");
+                    _text = File.ReadAllText($@"../../../../Text Files Go HERE/{fileName}");
                     break;
                 }
                 catch
                 {
                     Console.WriteLine(errorMessage);
-                    fileTextInput(Console.ReadLine());
+                    FileTextInput(Console.ReadLine());
                 }
             }
-            return text;
+            return _text;
         }
 
     }

@@ -8,28 +8,32 @@ namespace CMP1903M_Assessment_1_Base_Code
 {
     public class Analyse
     {
-        //Handles the analysis of text
+        // Handles the analysis of text
 
-        // Initialize properties
-        char[] lowerVowels = {'a','e','i','o','u'};
-        char[] upperVowels = {'A','E','I','O','U'};
-        char[] lowerConsonant = { 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
-        char[] upperConsonant = { 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'};
-        char[] numerals = {'0','1','2','3','4','5','6','7','8','9'};
-        char sentences = '.';
+        // Initialize a list of characters to test the text against for analysis
+        private char[] LowerVowels { get; } = {'a', 'e', 'i', 'o', 'u'};
+        private char[] UpperVowels { get; } = {'A', 'E', 'I', 'O', 'U'};
+        private char[] LowerConsonant { get; } =
+            {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
+        private char[] UpperConsonant { get; } =
+            {'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'};
+        private char[] Numerals { get; } = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        private char Sentences { get; } = '.';
 
-        int numOfSentences = 0;
-        int numOfVowels = 0;
-        int numOfConsonants = 0;
-        int numOfUpperCase = 0;
-        int numOfLowerCase = 0;
-        int numOfNumerals = 0;
+        // Initialise Counters to keep track of text properties
+        private int _numOfSentences = 0;
+        private int _numOfVowels = 0;
+        private int _numOfConsonants = 0;
+        private int _numOfUpperCase = 0;
+        private int _numOfLowerCase = 0;
+        private int _numOfNumerals = 0;
+        private int _numOfCharacters = 0;
         
         //Method: analyseText
         //Arguments: string
         //Returns: list of integers
         //Calculates and returns an analysis of the text
-        public List<int> analyseText(string input)
+        public List<int> AnalyseText(string input)
         {
             //List of integers to hold the first five measurements:
             //1. Number of sentences
@@ -37,58 +41,61 @@ namespace CMP1903M_Assessment_1_Base_Code
             //3. Number of consonants
             //4. Number of upper case letters
             //5. Number of lower case letters
+            //6. Number of numerals
+            //7. Number of characters
             
             List<int> values = new List<int>();
             
             //Initialise all the values in the list to '0'
-            
-            for(int i = 0; i<6; i++)
+            for(int i = 0; i<7; i++)
             {
                 values.Add(0);
             }
-
+            
             foreach (char character in input)
             {
-                if (character == sentences)
+                if (character == Sentences)
                 {
-                    numOfSentences++;
+                    _numOfSentences++;
                 }
-                else if (lowerVowels.Contains(character))
+                else if (LowerVowels.Contains(character))
                 {
-                    numOfLowerCase++;
-                    numOfVowels++;
+                    _numOfLowerCase++;
+                    _numOfVowels++;
                 }
-                else if (upperVowels.Contains(character))
+                else if (UpperVowels.Contains(character))
                 {
-                    numOfUpperCase++;
-                    numOfVowels++;
+                    _numOfUpperCase++;
+                    _numOfVowels++;
                 }
-                else if (lowerConsonant.Contains(character))
-                {
-                    numOfLowerCase++;
-                    numOfConsonants++;
+                else if (LowerConsonant.Contains(character))
+                { 
+                    _numOfLowerCase++;
+                    _numOfConsonants++;
                 }
-                else if (upperConsonant.Contains(character))
+                else if (UpperConsonant.Contains(character))
                 {
-                    numOfUpperCase++;
-                    numOfConsonants++;
+                    _numOfUpperCase++;
+                    _numOfConsonants++;
                 }
-                else if (numerals.Contains(character))
+                else if (Numerals.Contains(character))
                 {
-                    numOfNumerals++;
+                    _numOfNumerals++;
                 }
             }
             
-            values[0] = numOfSentences;
-            values[1] = numOfVowels;
-            values[2] = numOfConsonants;
-            values[3] = numOfUpperCase;
-            values[4] = numOfLowerCase;
-            values[5] = numOfNumerals;
-            
-            int totalCharacters = numOfConsonants+numOfVowels+numOfNumerals;
-            Console.WriteLine("Total number of Characters = " + totalCharacters);
+            // Calculate the total number of Characters in the Text
+            _numOfCharacters = _numOfConsonants + _numOfVowels + _numOfNumerals;
 
+            // Assign the values of each counter to the list that is returned
+            values[0] = _numOfSentences;
+            values[1] = _numOfVowels;
+            values[2] = _numOfConsonants;
+            values[3] = _numOfUpperCase;
+            values[4] = _numOfLowerCase;
+            values[5] = _numOfNumerals;
+            values[6] = _numOfCharacters;
+                
             return values;
         }
     }

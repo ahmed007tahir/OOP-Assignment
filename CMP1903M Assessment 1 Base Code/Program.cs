@@ -27,18 +27,17 @@ namespace CMP1903M_Assessment_1_Base_Code
             
             while (true)
             {
-
                 string userChoice = Console.ReadLine();
                 if (userChoice == "1")
                 {
-                    text = get.manualTextInput();
+                    text = get.ManualTextInput();
                     break;
                 }
                 else if (userChoice == "2")
                 {
                     Console.Write("\n\nPlease type the name of the text file you wish to be analysed: ");
                     string fileName = Console.ReadLine();
-                    text = get.fileTextInput(fileName);
+                    text = get.FileTextInput(fileName);
                     break;
                 }
                 else
@@ -50,7 +49,7 @@ namespace CMP1903M_Assessment_1_Base_Code
             //Create an 'Analyse' object
             //Pass the text input to the 'analyseText' method
             Analyse run = new Analyse();
-            parameters = run.analyseText(text);
+            parameters = run.AnalyseText(text);
 
             //Receive a list of integers back
             int numSentences = parameters[0];
@@ -58,6 +57,8 @@ namespace CMP1903M_Assessment_1_Base_Code
             int numOfConsonants = parameters[2];
             int numOfUpperCase = parameters [3];
             int numOfLowerCase = parameters[4];
+            int numOfNumerals = parameters[5];
+            int numOfCharacters = parameters[6];
             
             //Report the results of the analysis
             Console.WriteLine("\nAnalysis of your Text:\n");
@@ -65,14 +66,14 @@ namespace CMP1903M_Assessment_1_Base_Code
                               $"Number of Vowels: {numOfVowels}\n" +
                               $"Number of Consonants: {numOfConsonants}\n" +
                               $"Number of Upper-Case Letters: {numOfUpperCase}\n" +
-                              $"Number of Lower-Case Letters: {numOfLowerCase}\n");
+                              $"Number of Lower-Case Letters: {numOfLowerCase}\n" +
+                              $"Number of Numerals: {numOfNumerals}\n" +
+                              $"Total number of Characters: {numOfCharacters}");
             
             //TO ADD: Get the frequency of individual letters?
             Console.Read();
            
         }
         
-        
-    
     }
 }
