@@ -51,6 +51,13 @@ namespace CMP1903M_Assessment_1_Base_Code
             Analyse run = new Analyse();
             parameters = run.AnalyseText(text);
 
+
+
+            Report write = new Report();
+            List<string> somelist = new List<string>();
+            somelist = run.ComplexWords(text);
+            write.outputFile(somelist,"newfile.txt");
+
             //Receive a list of integers back
             int numSentences = parameters[0];
             int numOfVowels = parameters[1];
@@ -71,6 +78,10 @@ namespace CMP1903M_Assessment_1_Base_Code
                               $"Total number of Characters: {numOfCharacters}");
             
             //TO ADD: Get the frequency of individual letters?
+            
+            run.Frequency(text);
+            
+            
             Console.Read();
            
         }

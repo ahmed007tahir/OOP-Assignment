@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace CMP1903M_Assessment_1_Base_Code
         private char[] UpperConsonant { get; } =
             {'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'};
         private char[] Numerals { get; } = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-        private char Sentences { get; } = '.';
+        private char[] Sentences { get; } = {'.', '!', '?'};
 
         // Initialise Counters to keep track of text properties
         private int _numOfSentences = 0;
@@ -54,7 +55,7 @@ namespace CMP1903M_Assessment_1_Base_Code
             
             foreach (char character in input)
             {
-                if (character == Sentences)
+                if (Sentences.Contains(character))
                 {
                     _numOfSentences++;
                 }
@@ -97,6 +98,37 @@ namespace CMP1903M_Assessment_1_Base_Code
             values[6] = _numOfCharacters;
                 
             return values;
+        }
+
+        public void Frequency(string text)
+        {
+            Console.WriteLine("\nThe Frequency of the text is:\n");
+            while (text.Length > 0) {
+                Console.Write("Character " + text[0] + ": ");
+                int cal = 0;
+                for (int j = 0; j < text.Length; j++) {
+                    if (text[0] == text[j]) {
+                        cal++;
+                    }
+                }
+                Console.WriteLine(cal + " times");
+                text = text.Replace(text[0].ToString(), string.Empty);
+            }
+            Console.ReadLine();
+        }
+
+        public List<string> ComplexWords(string text)
+        {
+            List<string> listComplex = new List<string>();
+            foreach (string complexWord in text.Split().Distinct())
+            {
+                if (complexWord.Length >= 7)
+                {
+                    listComplex.Add(complexWord);
+                }
+            }
+
+            return listComplex;
         }
     }
 }
