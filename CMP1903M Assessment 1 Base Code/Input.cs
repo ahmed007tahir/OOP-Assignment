@@ -12,7 +12,7 @@ namespace CMP1903M_Assessment_1_Base_Code
         //Handles the text input for Assessment 1
         
         //Initialising private variable to hold the Text
-        private string _text = "some text";
+        private string _text = "some-text";
         
         //Method: manualTextInput
         //Arguments: none
@@ -25,12 +25,17 @@ namespace CMP1903M_Assessment_1_Base_Code
             try
             {
                 _text = Console.ReadLine();
-                while (_text[_text.Count()-1] != '*')
+                while (_text[_text.Count() - 1] != '*')
                 {
-                    Console.WriteLine("\nYou did not end your text with an asterisk(*). You can continue to type in more text.\nPlease end your text with an asterisk(*).");
+                    Console.WriteLine(
+                        "\nYou did not end your text with an asterisk(*). You can continue to type in more text.\nPlease end your text with an asterisk(*).");
                     _text += " ";
                     _text += Console.ReadLine();
                 }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
             }
             catch
             {
@@ -61,6 +66,17 @@ namespace CMP1903M_Assessment_1_Base_Code
                 }
             }
             return _text;
+        }
+        
+        public string RemovePunctuation(string text)
+        {
+            var sb = new StringBuilder();
+            foreach (char i in text)
+            {
+                if (!char.IsPunctuation(i))
+                    sb.Append(i);
+            }
+            return sb.ToString();
         }
 
     }

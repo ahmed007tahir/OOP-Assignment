@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CMP1903M_Assessment_1_Base_Code
 {
-    class Program
+    static class Program
     {
         static void Main()
         {
@@ -48,15 +48,15 @@ namespace CMP1903M_Assessment_1_Base_Code
 
             //Create an 'Analyse' object
             //Pass the text input to the 'analyseText' method
+            Console.WriteLine(text);
             Analyse run = new Analyse();
             parameters = run.AnalyseText(text);
-
-
+            
+            text = get.RemovePunctuation(text);
 
             Report write = new Report();
-            List<string> somelist = new List<string>();
-            somelist = run.ComplexWords(text);
-            write.outputFile(somelist,"newfile.txt");
+            List<string> listComplexWords = new List<string>(run.ComplexWords(text));
+            write.outputFile(listComplexWords,"newfile.txt");
 
             //Receive a list of integers back
             int numSentences = parameters[0];
