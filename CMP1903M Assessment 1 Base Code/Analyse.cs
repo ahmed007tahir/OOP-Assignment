@@ -106,7 +106,7 @@ namespace CMP1903M_Assessment_1_Base_Code
         {
             Console.WriteLine("\nThe Frequency of the text is:\n");
             while (text.Length > 0) {
-                Console.Write("Character " + text[0] + ": ");
+                Console.Write("Character '" + text[0] + "': ");
                 int cal = 0;
                 for (int j = 0; j < text.Length; j++) {
                     if (text[0] == text[j]) {
@@ -118,19 +118,19 @@ namespace CMP1903M_Assessment_1_Base_Code
                 // removes the first character in string text, reducing length by 1
                 text = text.Replace(text[0].ToString(), string.Empty);
             }
-            // Console.ReadLine();
         }
 
+        // Method that takes in a string and returns a list of 7+ letter words from string
         public List<string> ComplexWords(string text)
         {
             List<string> listComplex = new List<string>();
-
-            foreach (string complexWord in text.Split())
+            Console.WriteLine("\nList of Complex Words:");
+            foreach (string complexWord in text.Split().Distinct())
             {
-                if (text.Length >= 7)
+                if (complexWord.Length > 7)
                 {
-                    listComplex.Add(text);
-                    Console.WriteLine(text);
+                    listComplex.Add(complexWord);
+                    Console.WriteLine("- " + complexWord);
                 }
             }
 
