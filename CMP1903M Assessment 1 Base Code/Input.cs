@@ -12,7 +12,7 @@ namespace CMP1903M_Assessment_1_Base_Code
         //Handles the text input for Assessment 1
         
         //Initialising private variable to hold the Text
-        private string _text = "some text";
+        private string _text = "some-text";
         
         //Method: manualTextInput
         //Arguments: none
@@ -21,16 +21,21 @@ namespace CMP1903M_Assessment_1_Base_Code
         public string ManualTextInput()
         {
 
-            Console.WriteLine("\n\nType in the Text. Please end with an asterisk(*).\n");
+            Console.WriteLine("\nType in the Text. Please end with an asterisk(*).\n");
             try
             {
                 _text = Console.ReadLine();
-                while (_text[_text.Count()-1] != '*')
+                while (_text[_text.Count() - 1] != '*')
                 {
-                    Console.WriteLine("\nYou did not end your text with an asterisk(*). You can continue to type in more text.\nPlease end your text with an asterisk(*).");
+                    Console.WriteLine(
+                        "\nYou did not end your text with an asterisk(*). You can continue to type in more text.\nPlease end your text with an asterisk(*).");
                     _text += " ";
                     _text += Console.ReadLine();
                 }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
             }
             catch
             {
@@ -46,7 +51,7 @@ namespace CMP1903M_Assessment_1_Base_Code
         //Gets text input from a .txt file
         public string FileTextInput(string fileName)
         {
-            string errorMessage = "Invalid input! Please type the name of the text you wish to be analysed.";
+            string errorMessage = "Please type the name of the text you wish to be analysed: ";
             while (true)
             {
                 try
@@ -54,13 +59,35 @@ namespace CMP1903M_Assessment_1_Base_Code
                     _text = File.ReadAllText($@"../../../../Text Files Go HERE/{fileName}");
                     break;
                 }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine(
+                        $"File with the name '{fileName}' doesn't exist in the 'Text Files Go HERE' folder.");
+                    Console.Write(errorMessage);
+                    FileTextInput(Console.ReadLine());
+                    break;
+                }
                 catch
                 {
-                    Console.WriteLine(errorMessage);
+                    Console.WriteLine("Invalid Input!");
+                    Console.Write(errorMessage);
                     FileTextInput(Console.ReadLine());
+                    break;
                 }
             }
             return _text;
+        }
+
+        // function that takes in a string text and returns the text with all the punctuation removed
+        public string RemovePunctuation(string text)
+        {
+            var sb = new StringBuilder();
+            foreach (char i in text)
+            {
+                if (!char.IsPunctuation(i))
+                    sb.Append(i);
+            }
+            return sb.ToString();
         }
 
     }

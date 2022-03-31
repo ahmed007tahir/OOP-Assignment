@@ -12,14 +12,14 @@ namespace CMP1903M_Assessment_1_Base_Code
         // Handles the analysis of text
 
         // Initialize a list of characters to test the text against for analysis
-        private char[] LowerVowels { get; } = {'a', 'e', 'i', 'o', 'u'};
-        private char[] UpperVowels { get; } = {'A', 'E', 'I', 'O', 'U'};
-        private char[] LowerConsonant { get; } =
+        private readonly char[] _lowerVowels = {'a', 'e', 'i', 'o', 'u'};
+        private readonly char[] _upperVowels = {'A', 'E', 'I', 'O', 'U'};
+        private readonly char[] _lowerConsonant =
             {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
-        private char[] UpperConsonant { get; } =
+        private readonly char[] _upperConsonant =
             {'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'};
-        private char[] Numerals { get; } = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-        private char[] Sentences { get; } = {'.', '!', '?'};
+        private readonly char[] _numerals = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        private readonly char[] _sentences = {'.', '!', '?'};
 
         // Initialise Counters to keep track of text properties
         private int _numOfSentences = 0;
@@ -55,31 +55,32 @@ namespace CMP1903M_Assessment_1_Base_Code
             
             foreach (char character in input)
             {
-                if (Sentences.Contains(character))
+                // add switch case statements here
+                if (_sentences.Contains(character))
                 {
                     _numOfSentences++;
                 }
-                else if (LowerVowels.Contains(character))
+                else if (_lowerVowels.Contains(character))
                 {
                     _numOfLowerCase++;
                     _numOfVowels++;
                 }
-                else if (UpperVowels.Contains(character))
+                else if (_upperVowels.Contains(character))
                 {
                     _numOfUpperCase++;
                     _numOfVowels++;
                 }
-                else if (LowerConsonant.Contains(character))
+                else if (_lowerConsonant.Contains(character))
                 { 
                     _numOfLowerCase++;
                     _numOfConsonants++;
                 }
-                else if (UpperConsonant.Contains(character))
+                else if (_upperConsonant.Contains(character))
                 {
                     _numOfUpperCase++;
                     _numOfConsonants++;
                 }
-                else if (Numerals.Contains(character))
+                else if (_numerals.Contains(character))
                 {
                     _numOfNumerals++;
                 }
@@ -100,11 +101,12 @@ namespace CMP1903M_Assessment_1_Base_Code
             return values;
         }
 
+        // Method to count the frequency of each variable in a string text
         public void Frequency(string text)
         {
             Console.WriteLine("\nThe Frequency of the text is:\n");
             while (text.Length > 0) {
-                Console.Write("Character " + text[0] + ": ");
+                Console.Write("Character '" + text[0] + "': ");
                 int cal = 0;
                 for (int j = 0; j < text.Length; j++) {
                     if (text[0] == text[j]) {
@@ -112,19 +114,23 @@ namespace CMP1903M_Assessment_1_Base_Code
                     }
                 }
                 Console.WriteLine(cal + " times");
+                
+                // removes the first character in string text, reducing length by 1
                 text = text.Replace(text[0].ToString(), string.Empty);
             }
-            Console.ReadLine();
         }
 
+        // Method that takes in a string and returns a list of 7+ letter words from string
         public List<string> ComplexWords(string text)
         {
             List<string> listComplex = new List<string>();
+            Console.WriteLine("\nList of Complex Words:");
             foreach (string complexWord in text.Split().Distinct())
             {
-                if (complexWord.Length >= 7)
+                if (complexWord.Length > 7)
                 {
                     listComplex.Add(complexWord);
+                    Console.WriteLine("- " + complexWord);
                 }
             }
 
